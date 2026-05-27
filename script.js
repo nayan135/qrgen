@@ -1,0 +1,28 @@
+function generateeQr(){
+      let qrText = document.getElementById("naayy").value || "https://nayan135.com.np";
+      document.getElementsByClassName("url")[0].textContent = qrText;
+      document.getElementsByClassName("url")[0].href = qrText;
+      document.getElementById("qrcode").innerHTML = "";
+      new QRCode(document.getElementById("qrcode"), {
+      text: qrText,
+       width:256,
+        height:256,
+         colorDark: '#000000',
+          colorLight:'#ffffff', 
+          correctLevel: QRCode.CorrectLevel.H  
+      });
+      
+}
+
+function downloadQr(){
+      let qrCanvas = document.querySelector("#qrcode canvas");
+      if(canvas){
+            let image=qrCanvas.toDataURL('image/png');
+            let link=document.createElement('a');
+            link.href=image;
+            link.download=qrText+'.png';
+            link.click();
+      }
+}
+generateeQr();
+document.getElementById("naayy").addEventListener("input",generateeQr);
